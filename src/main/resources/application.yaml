@@ -1,0 +1,13 @@
+token:
+  jwt:
+    secret: dsgdsgsdg
+  refresh:
+    secret: wqfrgfasggfg
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@jwt.ejyts.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+springdoc:
+  packages-to-scan: com.iwaniuk.todolist_auth
