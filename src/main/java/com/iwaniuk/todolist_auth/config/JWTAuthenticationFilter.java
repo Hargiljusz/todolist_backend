@@ -75,6 +75,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Cookie cookie = new Cookie("refreshToken",refreshToken);
         cookie.setHttpOnly(true);
         cookie.setMaxAge(604800);
+        cookie.setPath("/");
         return cookie;
     }
 

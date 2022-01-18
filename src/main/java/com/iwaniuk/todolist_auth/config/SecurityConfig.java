@@ -50,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new AuthorizationFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/api/hello/2","/api/auth/**").permitAll()
+                .antMatchers("/api/hello/2","/api/hello/init","/api/auth/**").permitAll()
                 .antMatchers("/api/hello/1").hasRole("ADMIN")
-                .antMatchers("/api/todo/**").authenticated()
+                .antMatchers("/api/todo/**","/api/auth/logout").authenticated()
                 .antMatchers("/api/user/**").hasAnyRole("ADMIN","USER")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll();

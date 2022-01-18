@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -37,5 +40,17 @@ public class AuthController {
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity logout(HttpServletResponse response){
+        response.addCookie(logoutCookie());
+        return ResponseEntity.noContent().build();
+    }
+    private Cookie logoutCookie() {
+        Cookie cookie = new Cookie("refreshToken",null);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        return cookie;
     }
 }
